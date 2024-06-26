@@ -31,6 +31,7 @@ import GeneratePodcast from "@/components/GeneratePodcast";
 import GenerateThumbnail from "@/components/GenerateThumbnail";
 import { Loader } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
+import { VoiceType } from "@/types";
 
 const formSchema = z.object({
   podcastTitle: z.string().min(2, {
@@ -45,15 +46,11 @@ const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
 
 const CreatePodcast = () => {
   const [imagePrompt, setImagePrompt] = useState("");
-  const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(
-    null
-  );
+  const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(null);
   const [imageUrl, setImageUrl] = useState("");
 
   const [audioUrl, setAudioUrl] = useState("");
-  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(
-    null
-  );
+  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(null);
   const [audioDuration, setAudioDuration] = useState(0);
 
   const [voiceType, setVoiceType] = useState<string | null>(null);
@@ -89,9 +86,7 @@ const CreatePodcast = () => {
               name="podcastTitle"
               render={({ field }) => (
                 <FormItem className="flex flex-col gap-2.5">
-                  <FormLabel className="text-16 font-bold text-white-1">
-                    Podcast Title
-                  </FormLabel>
+                  <FormLabel className="text-16 font-bold text-white-1">Podcast Title</FormLabel>
                   <FormControl>
                     <Input
                       className="input-class focus-visible:ring-offset-orange-1"
@@ -105,9 +100,7 @@ const CreatePodcast = () => {
             />
 
             <div className="flex flex-col gap-2.5">
-              <Label className="text-16 font-bold text-white-1">
-                Select AI Voice
-              </Label>
+              <Label className="text-16 font-bold text-white-1">Select AI Voice</Label>
 
               <Select onValueChange={(value) => setVoiceType(value)}>
                 <SelectTrigger
@@ -148,9 +141,7 @@ const CreatePodcast = () => {
               name="podcastDescription"
               render={({ field }) => (
                 <FormItem className="flex flex-col gap-2.5">
-                  <FormLabel className="text-16 font-bold text-white-1">
-                    Description
-                  </FormLabel>
+                  <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
                   <FormControl>
                     <Textarea
                       className="input-class focus-visible:ring-offset-orange-1"
@@ -167,7 +158,7 @@ const CreatePodcast = () => {
             <GeneratePodcast
               setAudioStorageId={setAudioStorageId}
               setAudio={setAudioUrl}
-              voiceType={voiceType!}
+              voiceType={voiceType! as VoiceType}
               audio={audioUrl}
               voicePrompt={voicePrompt}
               setVoicePrompt={setVoicePrompt}
