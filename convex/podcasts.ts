@@ -59,9 +59,9 @@ export const getTrendingPodcasts = query({
 });
 
 export const getPodcastById = query({
-  args: { podcastid: v.id("podcasts") },
+  args: { podcastId: v.id("podcasts") },
   handler: async (ctx, args) => {
-    return await ctx.db.get(args.podcastid);
+    return await ctx.db.get(args.podcastId);
   },
 });
 
