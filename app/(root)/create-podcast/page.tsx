@@ -23,7 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,7 +33,6 @@ import { Loader } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
 import { VoiceType } from "@/types";
 import { useToast } from "@/components/ui/use-toast";
-import { create } from "domain";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -109,7 +108,7 @@ const CreatePodcast = () => {
       setIsSubmitting(false);
     } catch (error) {
       console.log(error);
-      toast({ title: "Error", description: "Failed to create podcast", variant: "destructive" });
+      toast({ title: "Error", description: "Failed to create podcast" });
       setIsSubmitting(false);
     }
   }
