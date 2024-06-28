@@ -7,6 +7,7 @@ import { api } from "@/convex/_generated/api";
 import LoaderSpinner from "./LoaderSpinner";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { useAudio } from "@/providers/AudioProvider";
 
 const PodcastDetailPlayer = ({
   audioUrl,
@@ -21,7 +22,7 @@ const PodcastDetailPlayer = ({
   authorId,
 }: PodcastDetailPlayerProps) => {
   const router = useRouter();
-  // const { setAudio } = useAudio();
+  const { setAudio } = useAudio();
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
